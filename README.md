@@ -21,7 +21,7 @@ This exists because doing the aforementioned task is very confusing and does not
 Now you might see that these are a lot of commands to run. That is why I made a script to make this process a lot simpler. Keep in mind it only works if the name of your .java file is the same as your class. 
 
 ### Script
-Goto your bin folder by doing `cd /data/data/com.termux/filer/usr/bin`. There make a script called java by doing `nano java`. In that file, paste the following: 
+Goto your bin folder by doing `cd /data/data/com.termux/files/usr/bin`. There make a script called java by doing `nano java`. In that file, paste the following: 
 
 ```
 #!/data/data/com.termux/files/usr/bin/bash
