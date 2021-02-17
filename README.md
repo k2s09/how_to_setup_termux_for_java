@@ -1,27 +1,28 @@
-# How to setup Termux for Java
+# How to Setup Termux for Java
 
 ## Why does this exist?
-Because doing this is a complicated and confusing process with not a lot of resources.
+This exists because doing the aforementioned task is very confusing and does not have a lot of resources on it. 
 
-# Steps: 
+## Steps:
+* Step 1: Download Termux. Links from [Apkpure](https://m.apkpure.com/termux/com.termux), [F-Droid](https://f-droid.org/en/packages/com.termux/) and [Google Play Store](https://play.google.com/store/apps/details?id=com.termux&hl=en_IN&gl=US). There are assistant apps for it like [Termux:Styles](https://f-droid.org/en/packages/com.termux.styling) and [Tasker](https://f-droid.org/en/packages/com.termux.tasker), etc. If you want to use them, just remember to download all of them from the same source.
 
-[Goto just commands without explanation](#just-commands)
+* Step 2: Download the compiler ECJ (Eclipse compiler for java) by doing `pkg install ecj`. Other JDK's are discontinued.
 
-1) Install termux (duh). It is only on android. [Apkpure](https://m.apkpure.com/termux/com.termux), [F-Droid](https://f-droid.org/en/packages/com.termux/) and [Google Play Store](https://play.google.com/store/apps/details?id=com.termux&hl=en_IN&gl=US). There are assistant apps for it to add functionality like [Styling](https://f-droid.org/en/packages/com.termux.styling) and [Tasker](https://f-droid.org/en/packages/com.termux.tasker). If you wish to install them, be sure to download them from the same source as you used for Termux (the hash keys need to match)
+* Step 3: Download the virtual machine called Dalvikvm by doing `pkg install dx`.
 
-2) Now we need to download a JDK to compile our code. Unfortunately, open-jdk was discontinued because of excessive heating issues. So we will use ECJ (Eclipse compiler for Java) and Dalvik VM, a virtual machine to run code. Run `pkg install ecj dx` in your terminal. It will take a little bit of time and install itself.
+* Step 4: Get a text editor. The easiest one to use is Nano. It's already installed. You can use it by doing `nano <filename.fileextension>`. A new window appears. You can type there, save by doing `ctrkey + s` and exit by `ctrlkey + x`. If you are familiar with vim, you can install it by `pkg install vim`
 
-3) Alright now we need a text editor to write code. If you are not familiar with any terminal text editors, use Nano. It will be already installed but you can update it by `pkg install nano`. To open a file you do `nano <filename.fileExtension>` and start writing. To save, you do `ctrl key + s` and to exit you do `ctrl key + x`. By now you can write a ceremonial hello world program in java. If syntax highlighting is not already enabled, you can go in nano's configuration file called nanorc by running `nano ~/.nanorc` and write the line `include /usr/share/nano/java.nanorc`. The syntax highlighting is not phenomenal, I must say, but it's better than nothing. Otherwise if you're familiar, you can install vim by `pkg install vim`
+* Step 5: To compile, do `ecj <filename>.java`
 
-4) Now we need to compile and execute our code. It is HIGHLY recommended to have java file same name as class. You will shortly see why. 
+* Step 6: To execute our program, we need to make a dex file for the compiled class file by doing `dx --dex --output=<filename>.dex <filename>.class`. (This is automatically done by the JDK's on PC)
 
-To compile, do `ecj <filename>.java`. Now a .class file will appear next to the .java file in the directory. Now we need to make a .dex file for it which is run by the virtual machine. You would have never done this before because JDK on PCs automatically does this. But here this is another step to do. Anyways, we have to do `dx --dex --output=<filename>.dex <filename>.class`. Now a .dex file will appear in the same directory. Now to run that file, we do `dalvikvm -cp <filename>.dex <filename>`
+* Step 7: To run that dex file, do `dalvikvm -cp <filename>.dex <filename>`.
 
-Now that's a lot to do. If you have different names for class and file, it's even harder to do. But don't loose hope. I made a bash script which makes all of this a lot simpler.
-
-Run `cd /data/data/com.termux/files/usr/bin`. Then do `nano java` to make a script. Paste this: 
+Now you might see that these are a lot of commands to run. That is why I made a script to make this process a lot simpler. Keep in mind it only works if the name of your .java file is the same as your class. 
 
 ### Script
+Goto your bin folder by doing `cd /data/data/com.termux/filer/usr/bin`. There make a script called java by doing `nano java`. In that file, paste the following: 
+
 ```
 #!/data/data/com.termux/files/usr/bin/bash
 
@@ -40,23 +41,18 @@ case ${option} in
                 ;;
 esac
 ```
-Leave that directory by doing `cd`. Now when you make .java file called hw.java, write code in it using nano/vim and save it. You do `java -r <filename>` and don't give any file extension. The script will compile it, make a dex file, run it, delete the dex file and other nonsense it makes to not clutter your directory and call it a day!
 
-5) That's basically it. But I recommend you do some more things to make your life simpler, like using git. Using git allows you to get the project files you made on your pc and access them from your phone, edit them and sync them! This isn't a tutorial for git, however. [A good git tutorial](https://www.tutorialspoint.com/git/index.htm). You can install it on termux by `pkg install git`. 
+That's all. Save and close the file, and come back to your root directory by doing `cd`. Now let's say you had a file `firstProgram.java` which had the class `firstProgram` **(the names need to be the same)**. Do `java -r <filename>` **(without .java)**, and the file should execute. 
 
-## Just commands
-(Do these one after the other on the terminal)
+* Step 8: This is an optional step. You can use git in your workflow (super useful) by doing `pkg install git` and then using all the git commands. I had cloned and synced my java project files on termux and my pc. [A good git tutorial](https://www.tutorialspoint.com/git/index.htm). If you decide on using vim, [here is my ~/.vimrc](https://github.com/k2s09/dotfiles/blob/main/.vimrc).
 
-`pkg install ecj dx`
-
-`pkg install nano`
-
-`cd /data/data/com.termux/files/usr/bin`
-
-`nano java`
-
-[paste all of this in that file and press ctrl + s to save and ctrl + x to close](#script)
-
-`cd`
-
-Now make a file with `nano <name of the file>.java`, code, do ctrlkey + s and ctrlkey + x to save and close, then `java -r <filename (without the .java)>` and it should run
+## Troubleshooting
+Q. Syntax Highlighting in Nano for java files is not working  
+A. Nano has a configuration file which you can open by doing `nano ~/.nanorc`. In that file, paste the following line: `include /usr/share/nano/java.nanorc`. Save and close, and the highlighting should work.  
+  
+  
+Q. Running script does not give output  
+A. It could be because of one of three things:   
+* The java class and file have different names. Sorry, they must be the same.  
+* The class didn't compile because of errors in your code. The errors should show up when you run the command. Go back in the file and fix them.  
+* You used the script in the wrong way. It is supposed to be `java -r <filename>`. You don't have to include .java or .class in the filename. Just  the literal name.
