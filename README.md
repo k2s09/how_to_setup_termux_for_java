@@ -35,14 +35,13 @@ case ${option} in
                 dalvikvm -cp hello.dex $CFILE
                 rm hello.dex
                 rm -r oat
-                rm $CFILE.class
                 ;;
         *) echo "`basename${0}`:Usage: java -r Classname"
                 ;;
 esac
 ```
 
-That's all. Save and close the file, and come back to your root directory by doing `cd`. Now let's say you had a file `firstProgram.java` which had the class `firstProgram` **(the names need to be the same)**. Do `java -r <filename>` **(without .java)**, and the file should execute. 
+Save and close the file, and do `chmod +x java` and come back to your root directory by doing `cd`. Now let's say you had a file `firstProgram.java` which had the class `firstProgram` **(the names need to be the same)**. Do `java -r <filename>` **(without .java)**, and the file should execute. 
 
 * Step 8: This is an optional step. You can use git in your workflow (super useful) by doing `pkg install git` and then using all the git commands. I had cloned and synced my java project files on termux and my pc. [A good git tutorial](https://www.tutorialspoint.com/git/index.htm). If you decide on using vim, [here is my ~/.vimrc](https://github.com/k2s09/dotfiles/blob/main/.vimrc).
 
