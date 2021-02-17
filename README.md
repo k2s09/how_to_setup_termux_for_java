@@ -10,7 +10,7 @@ This exists because doing the aforementioned task is very confusing and does not
 
 * Step 3: Download the virtual machine called Dalvikvm by doing `pkg install dx`.
 
-* Step 4: Get a text editor. The easiest one to use is Nano. It's already installed. You can use it by doing `nano <filename.fileextension>`. A new window appears. You can type there, save by doing `ctrkey + s` and exit by `ctrlkey + x`. If you are familiar with vim, you can install it by `pkg install vim`
+* Step 4: Get a text editor. The easiest one to use is Nano. It's already installed. You can use it by doing `nano <filename.fileextension>`. A new window appears. You can type there, save by doing `ctrkey + s` and exit by `ctrlkey + x`. If you are familiar with vim, you can install it by `pkg install vim`. [It is suggested to use this keyboard since all these text editors are optimised with pc keyboards](https://play.google.com/store/apps/details?id=org.pocketworkstation.pckeyboard&hl=en_IN&gl=US).
 
 * Step 5: To compile, do `ecj <filename>.java`
 
