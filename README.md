@@ -3,7 +3,10 @@
 ## Why does this exist?
 Because doing this is a complicated and confusing process with not a lot of resources.
 
-# Steps:
+# Steps: 
+
+[Goto just commands without explanation](#just-commands)
+
 1) Install termux (duh). It is only on android. [Apkpure](https://m.apkpure.com/termux/com.termux), [F-Droid](https://f-droid.org/en/packages/com.termux/) and [Google Play Store](https://play.google.com/store/apps/details?id=com.termux&hl=en_IN&gl=US). There are assistant apps for it to add functionality like [Styling](https://f-droid.org/en/packages/com.termux.styling) and [Tasker](https://f-droid.org/en/packages/com.termux.tasker). If you wish to install them, be sure to download them from the same source as you used for Termux (the hash keys need to match)
 
 2) Now we need to download a JDK to compile our code. Unfortunately, open-jdk was discontinued because of excessive heating issues. So we will use ECJ (Eclipse compiler for Java) and Dalvik VM, a virtual machine to run code. Run `pkg install ecj dx` in your terminal. It will take a little bit of time and install itself.
@@ -17,6 +20,8 @@ To compile, do `ecj <filename>.java`. Now a .class file will appear next to the 
 Now that's a lot to do. If you have different names for class and file, it's even harder to do. But don't loose hope. I made a bash script which makes all of this a lot simpler.
 
 Run `cd /data/data/com.termux/files/usr/bin`. Then do `nano java` to make a script. Paste this: 
+
+### Script
 ```
 #!/data/data/com.termux/files/usr/bin/bash
 
@@ -38,3 +43,20 @@ esac
 Leave that directory by doing `cd`. Now when you make .java file called hw.java, write code in it using nano/vim and save it. You do `java -r <filename>` and don't give any file extension. The script will compile it, make a dex file, run it, delete the dex file and other nonsense it makes to not clutter your directory and call it a day!
 
 5) That's basically it. But I recommend you do some more things to make your life simpler, like using git. Using git allows you to get the project files you made on your pc and access them from your phone, edit them and sync them! This isn't a tutorial for git, however. [A good git tutorial](https://www.tutorialspoint.com/git/index.htm). You can install it on termux by `pkg install git`. 
+
+## Just commands
+(Do these one after the other on the terminal)
+
+`pkg install ecj dx`
+
+`pkg install nano`
+
+`cd /data/data/com.termux/files/usr/bin`
+
+`nano java`
+
+[paste all of this in that file and press ctrl + s to save and ctrl + x to close](#script)
+
+`cd`
+
+Now make a file with `nano <name of the file>.java`, code, do ctrlkey + s and ctrlkey + x to save and close, then `java -r <filename (without the .java)>` and it should run
